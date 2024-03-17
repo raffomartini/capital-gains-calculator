@@ -43,5 +43,5 @@ jobs:
 
       - name: publish
         run: |
-          docker login -u raffomartini -p ${{ secrets.GITHUB_TOKEN }} ghcr.io
+          docker login ghcr.io -u raffomartini -p ${{ secrets.GITHUB_TOKEN }}
           docker push ghcr.io/raffomartini/cgt-calc:latest
