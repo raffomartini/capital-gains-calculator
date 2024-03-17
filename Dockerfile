@@ -28,4 +28,4 @@ RUN pipx ensurepath
 
 WORKDIR /data
 
-ENTRYPOINT ["/bin/bash"]
+ENTRYPOINT ["/root/.local/bin/cgt-calc"]
