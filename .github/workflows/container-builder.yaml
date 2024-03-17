@@ -13,4 +13,5 @@ jobs:
           docker buildx build . --platform linux/amd64 --tag ghcr.io/raffomartini/cgt-calc:latest
       - name: publish
         run: |
+          docker login -u raffomartini -p ${{ secrets.GHCR_TOKEN }}
           docker push ghcr.io/raffomartini/cgt-calc:latest
