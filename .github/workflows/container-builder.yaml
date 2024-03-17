@@ -1,4 +1,4 @@
-name: Build container image and publish it on ghcr.io
+name: Publish cgt-calc container
 on:
   [workflow_dispatch]
 
