@@ -26,10 +26,15 @@ jobs:
             docker buildx build . --platform linux/amd64 --tag ghcr.io/raffomartini/cgt-calc:latest
 
 
-      - name: auth
-        run: |
-          docker login ghcr.io -u raffomartini -p ${{ secrets.GITHUB_TOKEN }}
+      -
+        name: Login to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
           
-      - name: publish
+      - 
+        name: publish
         run: |    
           docker push ghcr.io/raffomartini/cgt-calc:latest
