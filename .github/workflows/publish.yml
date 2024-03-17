@@ -1,0 +1,35 @@
+name: Publish cgt-calc.
+
+on:
+  [workflow_dispatch]
+
+env:
+    REGISTRY: ghcr.io
+    IMAGE_NAME: gcr-calc
+
+jobs:
+  build-and-push-container-image:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - 
+        name: Check out the repo
+        uses: actions/checkout@v4
+
+      - 
+        name: build
+        run: |
+            docker buildx build . --platform linux/amd64 --tag ghcr.io/raffomartini/cgt-calc:latest
+
+
+      - name: auth
+        run: |
+          docker login ghcr.io -u raffomartini -p ${{ secrets.GITHUB_TOKEN }}
+          
+      - name: publish
+        run: |    
+          docker push ghcr.io/raffomartini/cgt-calc:latest
