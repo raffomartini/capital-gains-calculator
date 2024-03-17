@@ -1,4 +1,5 @@
 name: Publish cgt-calc container
+
 on:
   [workflow_dispatch]
 
@@ -17,15 +18,15 @@ jobs:
     steps:
       - 
         name: Check out the repo
-        uses: actions/checkout@v4
+        uses: actions/checkout
 
-      - 
-        name: Log in to the Container registry
-        uses: docker/login-action
-        with:
-          registry: ${{ env.REGISTRY }}
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+      # - 
+      #   name: Log in to the Container registry
+      #   uses: docker/login-action
+      #   with:
+      #     registry: ${{ env.REGISTRY }}
+      #     username: ${{ github.actor }}
+      #     password: ${{ secrets.GITHUB_TOKEN }}
 
       # -
       #   name: Extract metadata (tags, labels) for Docker
@@ -42,5 +43,5 @@ jobs:
 
       - name: publish
         run: |
-          # docker login -u raffomartini -p ${{ secrets.GHCR_TOKEN }} ghcr.io
+          docker login -u raffomartini -p ${{ secrets.GITHUB_TOKEN }} ghcr.io
           docker push ghcr.io/raffomartini/cgt-calc:latest
