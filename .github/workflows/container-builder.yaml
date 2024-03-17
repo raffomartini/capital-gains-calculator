@@ -18,7 +18,7 @@ jobs:
     steps:
       - 
         name: Check out the repo
-        uses: actions/checkout
+        uses: actions/checkout@v4
 
       # - 
       #   name: Log in to the Container registry
@@ -41,7 +41,10 @@ jobs:
             docker buildx build . --platform linux/amd64 --tag ghcr.io/raffomartini/cgt-calc:latest
 
 
-      - name: publish
+      - name: auth
         run: |
           docker login ghcr.io -u raffomartini -p ${{ secrets.GITHUB_TOKEN }}
+          
+      - name: publish
+        run: |    
           docker push ghcr.io/raffomartini/cgt-calc:latest
