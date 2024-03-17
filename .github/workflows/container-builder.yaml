@@ -42,10 +42,3 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-      # - name: build
-      #   run: |
-      #     docker buildx build . --platform linux/amd64 --tag ghcr.io/raffomartini/cgt-calc:latest
-      # - name: publish
-      #   run: |
-      #     docker login -u raffomartini -p ${{ secrets.GHCR_TOKEN }} ghcr.io
-      #     docker push ghcr.io/raffomartini/cgt-calc:latest
